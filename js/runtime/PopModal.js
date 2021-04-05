@@ -4,7 +4,6 @@ export default class PopModal {
     this.data = {
       title: this.modal.getElementsByClassName('game-title')[0],
       content: this.modal.getElementsByClassName('game-content')[0],
-      cancelBtn: this.modal.getElementsByClassName('cancel')[0],
       confirmBtn: this.modal.getElementsByClassName('confirm')[0]
     }
   }
@@ -13,17 +12,8 @@ export default class PopModal {
       this.data[key].innerText = data[key]
     }
   }
-  onCancel(callback) {
-    this.data['cancelBtn'].addEventListener('click', e => {
-      e.preventDefault()
-      e.stopPropagation()
-      callback && callback()
-    })
-  }
   onConfirm(callback) {
     this.data['confirmBtn'].addEventListener('click', e => {
-      e.preventDefault()
-      e.stopPropagation()
       callback && callback()
     })
   }

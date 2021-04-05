@@ -42,17 +42,6 @@ html {
   display: flex;
   justify-content: space-between;
 }
-.button-group::after {
-  content: '';
-  display: block;
-  height: 100%;
-  width: 1px;
-  background: #ccc;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-}
 .cancel,
 .confirm {
   flex: 1;

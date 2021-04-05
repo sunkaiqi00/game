@@ -156,13 +156,7 @@ export default class Director {
     modal.initContent({
       title: '游戏得分',
       content: this.dateStore.get('score').scoreNumber,
-      cancelBtn: '退出游戏',
       confirmBtn: '重新开始'
-    })
-    modal.onCancel(() => {
-      console.log('退出游戏')
-      window.opener = null
-      window.close()
     })
     modal.onConfirm(() => {
       console.log('重新开始游戏')

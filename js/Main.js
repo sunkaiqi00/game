@@ -15,6 +15,7 @@ export default class Main {
     this.ctx = this.canvas.getContext('2d')
     this.dateStore = DateStore.getInstance()
     this.director = Director.getInstance()
+
     const loader = ReourceLoader.create()
     loader.onLoaded(map => this.onReourceFirstLOaded(map))
   }
@@ -22,7 +23,6 @@ export default class Main {
     this.dateStore.ctx = this.ctx
     this.dateStore.res = map
     this.initCanvas()
-    this.createBackgroundMusic()
     this.initBackground()
     this.initPopModal()
   }
@@ -47,8 +47,6 @@ export default class Main {
   // 点击事件
   bindEvent() {
     this.canvas.addEventListener('touchstart', e => {
-      e.preventDefault()
-      e.stopPropagation()
       if (this.director.isGameOver) {
         console.log('游戏开始')
         this.init()
@@ -57,39 +55,7 @@ export default class Main {
       }
     })
   }
-  // 背景音乐
-  createBackgroundMusic() {
-    // const audio = document.createElement('audio')
-    // document.body.appendChild(audio)
-    // audio.style.display = 'none'
-    // audio.src = 'audio/happy.mp3'
-    // audio.autoplay = true
-    // audio.loop = true
-    // audio.oncanplay = function () {
-    //   console.log('ok')
-    //   audio.play()
-    // }
-    // this.audio = document.getElementsByClassName('background-audio')[0]
-    // // console.log(this.audio.paused)
-    // this.audio.oncanplay = function () {
-    //   this.audio.play()
-    // }
-    // audio.paused = false
-    // audio.paused = false
-    //   if (uploadMusic.paused){
-    //     /*如果已经暂停*/
-    //     uploadMusic.play();/*播放*/
-    // }
-    // audio.oncanplay = function () {
-    //   console.log('ok')
-    //   audio.play()
-    // }
-    // // audio.muted = false
-    // document.body.ontouchstart = function () {
-    //   console.log('ok')
-    //   console.dir(audio.play)
-    // }
-  }
+
   initCanvas() {
     this.canvas.setAttribute('width', window.innerWidth)
     this.canvas.setAttribute('height', window.innerHeight)
@@ -99,18 +65,18 @@ export default class Main {
     modal.initContent({
       title: '游戏规则',
       content: '不断点击屏幕，不要触碰到铅笔，穿越铅笔获得分数',
-      cancelBtn: '退出游戏',
       confirmBtn: '开始游戏'
-    })
-    modal.onCancel(() => {
-      console.log('退出游戏')
-      window.opener = null
-      window.close()
     })
     modal.onConfirm(() => {
       console.log('开始游戏')
-      modal.hide()
       this.init()
+      modal.hide()
+      // 背景音乐
+      modal.modal.addEventListener('click', () => {
+        const audio = document.getElementsByClassName('background-audio')[0]
+        audio.play()
+      })
+      modal.modal.click()
     })
   }
   initBackground() {
