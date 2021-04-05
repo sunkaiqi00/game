@@ -7,6 +7,8 @@ import StartButton from './player/StartButton.js'
 import Background from './runtime/Background.js'
 import Land from './runtime/Land.js'
 import PopModal from './runtime/PopModal.js'
+import { close } from './utils/close.js'
+
 // 初始化整个游戏的精灵 作为游戏开始的入口
 export default class Main {
   constructor() {
@@ -58,12 +60,36 @@ export default class Main {
   }
   // 背景音乐
   createBackgroundMusic() {
-    const audio = document.createElement('audio')
-    document.body.appendChild(audio)
-    audio.style.display = 'none'
-    audio.src = 'audio/happy.mp3'
-    audio.autoplay = true
-    audio.loop = true
+    // const audio = document.createElement('audio')
+    // document.body.appendChild(audio)
+    // audio.style.display = 'none'
+    // audio.src = 'audio/happy.mp3'
+    // audio.autoplay = true
+    // audio.loop = true
+    // audio.oncanplay = function () {
+    //   console.log('ok')
+    //   audio.play()
+    // }
+    // this.audio = document.getElementsByClassName('background-audio')[0]
+    // // console.log(this.audio.paused)
+    // this.audio.oncanplay = function () {
+    //   this.audio.play()
+    // }
+    // audio.paused = false
+    // audio.paused = false
+    //   if (uploadMusic.paused){
+    //     /*如果已经暂停*/
+    //     uploadMusic.play();/*播放*/
+    // }
+    // audio.oncanplay = function () {
+    //   console.log('ok')
+    //   audio.play()
+    // }
+    // // audio.muted = false
+    // document.body.ontouchstart = function () {
+    //   console.log('ok')
+    //   console.dir(audio.play)
+    // }
   }
   initCanvas() {
     this.canvas.setAttribute('width', window.innerWidth)
@@ -79,7 +105,7 @@ export default class Main {
     })
     modal.onCancel(() => {
       console.log('退出游戏')
-      window.close()
+      close()
     })
     modal.onConfirm(() => {
       console.log('开始游戏')
