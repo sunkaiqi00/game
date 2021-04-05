@@ -7,7 +7,6 @@ import StartButton from './player/StartButton.js'
 import Background from './runtime/Background.js'
 import Land from './runtime/Land.js'
 import PopModal from './runtime/PopModal.js'
-import { close } from './utils/close.js'
 
 // 初始化整个游戏的精灵 作为游戏开始的入口
 export default class Main {
@@ -105,7 +104,8 @@ export default class Main {
     })
     modal.onCancel(() => {
       console.log('退出游戏')
-      close()
+      window.opener = null
+      window.close()
     })
     modal.onConfirm(() => {
       console.log('开始游戏')

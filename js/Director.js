@@ -3,7 +3,6 @@ import { screen_width } from './constant.js'
 import DownPencil from './runtime/DownPencil.js'
 import UpPencil from './runtime/UpPencil.js'
 import PopModal from './runtime/PopModal.js'
-import { close } from './utils/close.js'
 
 // 导演类 控制整体动画
 export default class Director {
@@ -162,7 +161,8 @@ export default class Director {
     })
     modal.onCancel(() => {
       console.log('退出游戏')
-      close()
+      window.opener = null
+      window.close()
     })
     modal.onConfirm(() => {
       console.log('重新开始游戏')
